@@ -2,7 +2,6 @@ package com.thingk0.shopping.repository;
 
 import com.thingk0.shopping.entity.Item;
 import com.thingk0.shopping.entity.ItemStatus;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
