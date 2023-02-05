@@ -1,5 +1,6 @@
 package com.thingk0.shopping.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.thingk0.shopping.entity.Item;
 import com.thingk0.shopping.entity.ItemStatus;
@@ -8,7 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -83,6 +88,31 @@ class ItemRepositoryTest {
                     .build());
         }
     }
+
+    private void itemListCreate2(int n) {
+        while (n-- > 0) {
+            itemRepository.save(Item.builder()
+                    .name("A상품 " + (n+1))
+                    .price(10000 + (n+1))
+                    .itemDetail("상품 디테일 " + (n+1))
+                    .itemStatus(ItemStatus.SALE)
+                    .stockQuantity(10 * (n+1))
+                    .regTime(LocalDateTime.now())
+                    .updateTime(LocalDateTime.now())
+                    .build());
+
+            itemRepository.save(Item.builder()
+                    .name("B상품 " + (n+1))
+                    .price(10000 + (n+1))
+                    .itemDetail("상품 디테일 " + (n+1))
+                    .itemStatus(ItemStatus.SOLD_OUT)
+                    .stockQuantity(10 * (n+1))
+                    .regTime(LocalDateTime.now())
+                    .updateTime(LocalDateTime.now())
+                    .build());
+        }
+    }
+
     private static Item itemCreate() {
         return Item.builder()
                 .name("아이폰14pro")
@@ -96,7 +126,7 @@ class ItemRepositoryTest {
     }
 
     @Test
-    @DisplayName("쿼리DSL 테스트")
+    @DisplayName("QueryDSL 1")
     public void querydslTest() throws Exception {
         this.itemListCreate(5);
 
@@ -112,6 +142,39 @@ class ItemRepositoryTest {
 
         for (Item i : itemList) {
             System.out.println("i = " + i);
+        }
+    }
+
+    @Test
+    @DisplayName("QueryDSL 2")
+    public void querydslTest2() throws Exception {
+        // given
+        this.itemListCreate2(10);
+
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        QItem item = QItem.item;
+
+        String itemDetail = "디테일";
+        String itemName = "A상품";
+        String itemStatus = "SALE";
+
+        booleanBuilder
+                .and(item.itemDetail.like("%" + itemDetail + "%"))
+                .and(item.name.startsWith(itemName));
+
+        if (StringUtils.equals(itemStatus, ItemStatus.SALE)) {
+            booleanBuilder.and(item.itemStatus.eq(ItemStatus.SALE));
+        }
+
+        Pageable pageable = PageRequest.of(0, 5);
+        // when
+        Page<Item> itemPage = itemRepository.findAll(booleanBuilder, pageable);
+        System.out.println("itemPage.getTotalElements() = " + itemPage.getTotalElements());
+
+        // then
+        List<Item> itemList = itemPage.getContent();
+        for (Item i : itemList) {
+            System.out.println(i);
         }
     }
 
