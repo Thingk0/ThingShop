@@ -2,6 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
     <!-- 헤더 영역입니다. -->
     <div th:fragment="header">
-        HEADER
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+            <!-- 브랜드 로고? -->
+            <a class="navbar-brand" href="/">Thing's Shop</a>
+            <!-- 네비게이션 바 -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">상품 등록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">상품 관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">장바구니</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">구매내역</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">로그아웃</a>
+                    </li>
+                </ul>
+                <!-- 검색창 -->
+                <form class="form-inline my-2 my-lg-0" th:action="@{/}"
+                      method="get">
+                    <input name="searchQuery" class="form-control mr-sm-2"
+                           type="search" placeholder="검색어를 입력해주세요." aria-label="Search">
+                    <button class="btn btn-light my-2 my-sm-0"
+                            type="submit">검색</button>
+                </form>
+            </div>
+        </nav>
     </div>
 </html>

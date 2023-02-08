@@ -32,3 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 /src/main/resources/application-private.properties
+/src/main/resources/static/bootstrap.min.css
+/src/main/resources/static/bootstrap.min.js
+/src/main/resources/static/jquery.js
+/src/main/resources/static/popper.js
