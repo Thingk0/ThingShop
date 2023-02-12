@@ -1,10 +1,14 @@
 package com.thingk0.shopping.entity.embedded;
 
-import lombok.Data;
+import lombok.*;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address {
 
     private String city;        // 도시
@@ -12,3 +16,4 @@ public class Address {
     private String postcode;    // 우편번호
 
 }
+

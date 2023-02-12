@@ -31,11 +31,14 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static Member createMember(MemberForm memberForm,
-                                      PasswordEncoder passwordEncoder) {
+    public static Member createMember(MemberForm memberForm, PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .username(memberForm.getUsername())
                 .password(passwordEncoder.encode(memberForm.getPassword()))
+                .address(new Address(
+                        memberForm.getCity(),
+                        memberForm.getStreet(),
+                        memberForm.getPostcode()))
                 .role(Role.USER)
                 .build();
     }
