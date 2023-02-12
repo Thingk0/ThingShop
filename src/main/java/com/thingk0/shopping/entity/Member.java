@@ -42,4 +42,11 @@ public class Member {
                 .role(Role.USER)
                 .build();
     }
+
+    /**
+     * 권한 변경
+     */
+    public void updateRole(Role role) {
+        this.role = role;
+    }
 }
