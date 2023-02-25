@@ -10,15 +10,18 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item> {
     //=== 검색어와 일치하는 상품찾기 ===//
-    @Query("select i from Item i where i.name = :itemName")
+    @Query("select i from Item i where i.itemName = :itemName")
     List<Item> findByName(@Param("itemName") String name);
+
     //=== 검색어를 포함하는 상품찾기 ===//
-    @Query("select i from Item i where i.name like %:itemName%")
+    @Query("select i from Item i where i.itemName like %:itemName%")
     List<Item> findByNameInclusive(@Param("itemName") String name);
+
     //=== 검색어로 시작하는 상품찾기 ===//
-    @Query("select i from Item i where i.name like :itemName%")
+    @Query("select i from Item i where i.itemName like :itemName%")
     List<Item> findByNameFrontInclusive(@Param("itemName") String name);
+
     //=== 검색어로 끝나는 상품찾기 ===//
-    @Query("select i from Item i where i.name like %:itemName")
+    @Query("select i from Item i where i.itemName like %:itemName")
     List<Item> findByNameBackInclusive(@Param("itemName") String name);
 }

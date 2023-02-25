@@ -36,3 +36,5 @@ build/
 /src/main/resources/static/bootstrap.min.js
 /src/main/resources/static/jquery.js
 /src/main/resources/static/popper.js
+/src/main/resources/application-dev.yml
+/src/main/resources/application-prod.yml

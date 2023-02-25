@@ -43,7 +43,7 @@ class ItemRepositoryTest {
         Item savedItem = itemRepository.save(item);
 
         // then
-        assertThat(savedItem.getName()).isEqualTo(item.getName());      // 이름이 같은가??
+        assertThat(savedItem.getItemName()).isEqualTo(item.getItemName());      // 이름이 같은가??
         assertThat(savedItem.getPrice()).isEqualTo(item.getPrice());    // 가격이 같은가??
     }
 
@@ -78,7 +78,7 @@ class ItemRepositoryTest {
     private void itemListCreate(int n) {
         while (n-- > 0) {
             itemRepository.save(Item.builder()
-                    .name("상품 " + (n+1))
+                    .itemName("상품 " + (n+1))
                     .price(10000 + (n+1))
                     .itemDetail("상품 디테일 " + (n+1))
                     .itemStatus(ItemStatus.SALE)
@@ -92,7 +92,7 @@ class ItemRepositoryTest {
     private void itemListCreate2(int n) {
         while (n-- > 0) {
             itemRepository.save(Item.builder()
-                    .name("A상품 " + (n+1))
+                    .itemName("A상품 " + (n+1))
                     .price(10000 + (n+1))
                     .itemDetail("상품 디테일 " + (n+1))
                     .itemStatus(ItemStatus.SALE)
@@ -102,7 +102,7 @@ class ItemRepositoryTest {
                     .build());
 
             itemRepository.save(Item.builder()
-                    .name("B상품 " + (n+1))
+                    .itemName("B상품 " + (n+1))
                     .price(10000 + (n+1))
                     .itemDetail("상품 디테일 " + (n+1))
                     .itemStatus(ItemStatus.SOLD_OUT)
@@ -115,7 +115,7 @@ class ItemRepositoryTest {
 
     private static Item itemCreate() {
         return Item.builder()
-                .name("아이폰14pro")
+                .itemName("아이폰14pro")
                 .price(10000)
                 .itemDetail("머리부터 발끝까지 완벽한 아이뻐14")
                 .itemStatus(ItemStatus.SALE)
@@ -160,7 +160,7 @@ class ItemRepositoryTest {
 
         booleanBuilder
                 .and(item.itemDetail.like("%" + itemDetail + "%"))
-                .and(item.name.startsWith(itemName));
+                .and(item.itemName.startsWith(itemName));
 
         if (StringUtils.equals(itemStatus, ItemStatus.SALE)) {
             booleanBuilder.and(item.itemStatus.eq(ItemStatus.SALE));
