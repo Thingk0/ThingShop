@@ -1,6 +1,7 @@
 package com.thingk0.shopping.entity;
 
 import com.thingk0.shopping.dto.MemberForm;
+import com.thingk0.shopping.entity.constant.Role;
 import com.thingk0.shopping.entity.embedded.Address;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;

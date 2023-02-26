@@ -1,5 +1,6 @@
 package com.thingk0.shopping.entity;
 
+import com.thingk0.shopping.entity.constant.OrderStatus;
 import lombok.*;
 
 import javax.persistence.*;

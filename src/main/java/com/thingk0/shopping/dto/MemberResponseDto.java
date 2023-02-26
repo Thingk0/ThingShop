@@ -1,6 +1,6 @@
 package com.thingk0.shopping.dto;
 
-import com.thingk0.shopping.entity.Role;
+import com.thingk0.shopping.entity.constant.Role;
 import com.thingk0.shopping.entity.embedded.Address;
 import lombok.Data;
 

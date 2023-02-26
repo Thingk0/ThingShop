@@ -31,6 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### custom ###
 /src/main/resources/application-private.properties
 /src/main/resources/static/bootstrap.min.css
 /src/main/resources/static/bootstrap.min.js
@@ -38,3 +40,5 @@ build/
 /src/main/resources/static/popper.js
 /src/main/resources/application-dev.yml
 /src/main/resources/application-prod.yml
+
+.DS_Store

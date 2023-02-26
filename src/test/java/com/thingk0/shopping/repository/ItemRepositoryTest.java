@@ -3,7 +3,7 @@ package com.thingk0.shopping.repository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.thingk0.shopping.entity.Item;
-import com.thingk0.shopping.entity.ItemStatus;
+import com.thingk0.shopping.entity.constant.ItemStatus;
 import com.thingk0.shopping.entity.QItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
