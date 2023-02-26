@@ -1,18 +1,18 @@
 package com.thingk0.shopping.entity;
 
 import com.thingk0.shopping.dto.ItemForm;
+import com.thingk0.shopping.entity.constant.ItemStatus;
 import lombok.*;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@Builder
-@Getter
-@Setter
 @Entity
-@ToString(of = {"id", "name", "price"})
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
 
     @Id
@@ -39,6 +39,7 @@ public class Item {
 
     private LocalDateTime updateTime;   // 상품 수정시간
 
+    // ItemForm -> Item
     public static Item createItem(ItemForm itemForm) {
         return Item
                 .builder()
@@ -50,13 +51,13 @@ public class Item {
                 .build();
     }
 
-    //=== 편의 메서드 ===//
-//    @PostConstruct
-//    public void setRegTime() {
-//        this.regTime = LocalDateTime.now();
-//    }
+    @PostConstruct
+    public void setRegTime() {
+        this.regTime = LocalDateTime.now();
+    }
 
-//    public void setUpdateTime(LocalDateTime updateTime) {
-//        this.updateTime = updateTime;
-//    }
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
 }
