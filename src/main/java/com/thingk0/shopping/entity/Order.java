@@ -10,9 +10,8 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "Orders")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id
@@ -33,8 +32,5 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-
-    private LocalDateTime regTime;
-    private LocalDateTime updateTime;
 
 }
